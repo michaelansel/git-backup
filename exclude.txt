@@ -1,0 +1,3 @@
+zerotier--aports
+zerotier--platform
+zerotier--download.zerotier.com
