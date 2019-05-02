@@ -3,7 +3,9 @@ OpenSWE1R
 OpenlyOperated
 WireGuard
 confirmedcode
+firecracker-microvm
 instantbox
+ipfs-shipyard
 sn-extensions
 standardfile
 standardnotes
