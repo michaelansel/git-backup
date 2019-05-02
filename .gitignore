@@ -1,3 +1,4 @@
 gh-backup/
+bb-backup/
 *.log
 node_modules/
