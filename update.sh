@@ -8,14 +8,7 @@ date
   mkdir -p gh-backup
   pushd gh-backup >/dev/null
 
-  if [[ -d "$repo" ]] ; then
-    echo "Updating $repo"
-    if pushd "$repo" >/dev/null ; then
-      git fetch --tags --all
-      git tag "gh-backup-$(date +%s)"
-      popd >/dev/null
-    fi
-  else
+  if [[ ! -d "$repo" ]] ; then
     echo "Cloning $repo"
     function clone_and_tag() {
       url="$1"
@@ -38,6 +31,19 @@ date
 
   popd >/dev/null
 done
+
+mkdir -p gh-backup
+pushd gh-backup >/dev/null
+find . -mindepth 1 -maxdepth 1 -type d | while read -r repo ; do
+  repo="${repo#./}"
+  echo "Updating $repo"
+  if pushd "$repo" >/dev/null ; then
+    git fetch --tags --all
+    git tag "gh-backup-$(date +%s)"
+    popd >/dev/null
+  fi
+done
+popd >/dev/null
 
 mkdir -p bb-backup
 pushd bb-backup >/dev/null
